@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import  React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
-import { login, logout } from '../slices/userSlice';
+import { login, logout, selectUser } from '../slices/userSlice';
 export const useAuthState = () => {
-  const user = useSelector;
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 

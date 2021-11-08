@@ -1,6 +1,6 @@
 import React, { VFC } from 'react';
 import tw from 'tailwind-rn';
-import { Text, View } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFirebaseAuth } from '../hooks/useFirebaseAuth';
 import { InputField } from '../components/InputField';
@@ -20,7 +20,7 @@ export const AuthScreen: VFC = () => {
     toggleMode,
   } = useFirebaseAuth();
   return (
-    <View
+    <SafeAreaView
       style={[tw('flex-1 pt-16 items-center'), { backgroundColor: '#008b8b' }]}
     >
       <FontAwesome name="tasks" size={50} color="white" />
@@ -57,6 +57,6 @@ export const AuthScreen: VFC = () => {
         {isLogin ? 'Create new account ?' : 'Login'}
       </Text>
       <IconButton name="retweet" size={24} color="#fff" onPress={toggleMode} />
-    </View>
+    </SafeAreaView>
   );
 };
