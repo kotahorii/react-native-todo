@@ -11,6 +11,8 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/types';
 import { useDeleteTag } from '../hooks/useDeleteTag';
+import { useDispatch } from 'react-redux';
+import { setSelectedTag } from '../slices/todoSlice';
 
 type Props = {
   id: string;
@@ -20,9 +22,15 @@ type Props = {
 const { width } = Dimensions.get('window');
 
 export const TagCardMemo: VFC<Props> = ({ id, name }) => {
+  const dispatch = useDispatch();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { deleteErr, deleteTag } = useDeleteTag();
+
+  const navToTaskStack = () => {
+    dispatch(setSelectedTag({ id, name }));
+    navigation.navigate('TaskStack');
+  };
   const deleteTagItem = async (idx: string) => {
     Alert.alert('Deleting', 'Are you sure?', [
       {
@@ -53,6 +61,7 @@ export const TagCardMemo: VFC<Props> = ({ id, name }) => {
           shadowRadius: 2,
         },
       ]}
+      onPress={navToTaskStack}
       onLongPress={() => deleteTagItem(id)}
     >
       <Text
