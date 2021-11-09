@@ -8,3 +8,16 @@ export type RootStackParamList = {
   TagList: undefined;
   CreateTag: undefined;
 };
+
+export type Tag = {
+  id: string;
+  name: string;
+  createdAt: string;
+};
+
+export type Task = {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+};
